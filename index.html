@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Real Time FLI Alert</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.anychart.com/releases/8.0.0/js/anychart-base.min.js"></script>
+
+  </head>
+
+  <body>
+
+    <div id="container">
+      <script>
+        // Start the Chart creation
+        anychart.onDocumentReady(function() {
+
+          // Fetch Data from the API
+          fetch('https://api.apispreadsheets.com/data/MOcRpvHuzqYZhmDi/')
+          .then((response) => {
+              return response.json();
+          })
+          .then((myJson) => {
+            
+            // create data variable for the chart
+            var fetchedData = myJson.data
+          
+            var coloredData = fetchedData.map((x)=>({
+              Location:x.Location,Status:x.Status,On_Duty:x["On Duty"],fill:x.Status==25?"green":x.Status==50?"yellow":x.Status==75?"orange":"red"
+            }))
+            console.log('anyT',coloredData)
+            var data = {
+              header: ["Location", "Status","On Duty"],
+              rows: coloredData, 
+            }
+
+  
+
+            // create the chart
+            var chart = anychart.bar();
+
+            // add the data
+            chart.data(data);
+
+            // set the chart title
+            chart.title("Real Time FLI Alert");
+
+            // draw
+            chart.container("container");
+  
+            chart.draw();
+          });
+        });
+      
+      </script>
+    </div>
+  </body>
+</html>
