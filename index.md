@@ -1,4 +1,4 @@
-## Welcome to GitHub Pages
+## Welcome to Sanergy Real-time Alert
 
 You can use the [editor on GitHub](https://github.com/lakip/Sanergy-Real-time-Alert/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
